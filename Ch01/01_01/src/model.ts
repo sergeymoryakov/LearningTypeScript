@@ -2,26 +2,19 @@ let displayName: string = "Jess's standing desk";
 let inventoryType: string = "furniture";
 let trackingNumber: string = "FD123455";
 let createDate: Date = new Date();
-
-type Cost = number | string;
-
-let originalCost: Cost;
-
-if (typeof originalCost === "number") {
-    let cost: number = originalCost;
-} else {
-    let x = originalCost;
-}
+let originalCost = 425 as any; // avoid type "any" - use as a last resort only!
+originalCost = "a lot of money";
 
 enum InventoryItemType {
-    Computer = "computer",
-    Furniture = "furniture",
+    SparePart = "part",
+    SpareComponent = "component",
 }
 
 interface InventoryItem {
     displayName: string;
-    inventoryType: "computer" | "furniture";
-    readonly trackingNumber: string;
+    // inventoryType: InventoryItemType;
+    inventoryType: "part" | "component";
+    trackingNumber: string;
     createDate: Date;
     originalCost?: number;
 
@@ -36,15 +29,15 @@ function saveInventoryItem(item: InventoryItem) {}
 
 let inventoryItem = getInventoryItem(trackingNumber);
 
-let updatedInventoryItem = inventoryItem;
+let updateInventoryItem = inventoryItem;
 
 inventoryItem.createDate = new Date();
 
 saveInventoryItem({
-    displayName: "MacBook Pro 15 Retina",
-    inventoryType: InventoryItemType.Computer,
-    trackingNumber: "MBP123456",
+    displayName: "Wheel Main",
+    // inventoryType: InventoryItemType.SparePart,
+    inventoryType: "part",
+    trackingNumber: "BST32-574-25",
     createDate: new Date(),
+    originalCost: 9790,
 });
-
-declare var Vue: any;
